@@ -4,11 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
+import * as Icon from '@phosphor-icons/react/dist/ssr';
+
 
 const Menu = () => {
-    const pathname = usePathname();
-    console.log(pathname);
-    const [fixedHeader] = useState(false);
+    const pathname = usePathname()
+    const [fixedHeader, setFixedHeader] = useState(false)
+    const [openMenuMobile, setOpenMenuMobile] = useState(false)
 
     return (
         <>
@@ -65,7 +67,7 @@ const Menu = () => {
                             <li className={`nav-item h-full flex items-center justify-center home ${pathname === '/contact' ? 'active' : ''} mx-4`}>
 
                                 <Link className='nav-link text-title flex items-center gap-1 text-blue-500' href="/contact">
-                                    <span> Contact
+                                    <span> Contact Us
                                     </span>
                                 </Link>
                             </li>
@@ -73,22 +75,42 @@ const Menu = () => {
                     </div>
 
 
-                    <div className = 'menu-right-block flex items-center'>
-                        <div className= 'icon-call'>
-                    <i className = 'icon-phone-call text-4xl;'></i>
+                    <div className='menu-right-block flex items-center'>
+                        <div className='icon-call'>
+                            <i className='icon-phone-call text-4xl'></i>
 
                         </div>
 
-                    <div className ='text ml-3'>
+                        <div className='text ml-3'>
 
-                        <div classNmae = 'text caption1'> Contact to me </div>
-                        <div classNmae = 'number text-button'> +6550238756 </div>
-                    </div>
+                            <div className='text caption1'> Contact to me </div>
+                            <div className='number text-button'> +6550238756 </div>
+                        </div>
+
+                        <div className='menu-humberger hidden pointer' onClick={() => setOpenMenuMobile(!openMenuMobile)}>
+                            <Icon.List className='text-2xl' weight='bold' />
+                        </div>
+
+
 
                     </div>
 
                 </div>
+
+                <div id='menu-mobile-block' className={`${openMenuMobile ? 'open' : ''}`}>
+                <div className='menu-mobile-main'> 
+                    <div className='container '>
+
+                        <ul>
+                            <li>
+                                asdfadf
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
+        </div>
         </>
     );
 }
